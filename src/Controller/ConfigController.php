@@ -1,15 +1,14 @@
 <?php
-
 /**
- * SocketController.
+ * ConfigController.
  *
  * User: alexmoreno
  * Date: 23/08/15
- * Time: 12:41
+ * Time: 20:10
  */
 
 namespace Stubby4php\Controller;
 
-class SocketController {
+class ConfigController {
 
 }
