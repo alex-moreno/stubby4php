@@ -1,0 +1,27 @@
+{
+    "name": "Stubby4PHP/Stubby4PHP",
+    "type": "app",
+    "description": "Stub server written in Silex/PHP",
+    "keywords": ["stub","stubby"],
+    "homepage": "https://github.com/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alex Moreno-Lopez",
+            "email": "alejandro.moreno@tdo.es",
+            "homepage": "http://alexmoreno.net",
+            "role": "Software Engineer"
+        }
+    ],
+    "require": {
+        "silex/silex": "*",
+        "knplabs/console-service-provider": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Stubby4php\\": [
+                "src"
+            ]
+        }
+    }
+}
