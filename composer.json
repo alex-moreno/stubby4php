@@ -1,5 +1,5 @@
 {
-    "name": "Stubby4PHP/Stubby4PHP",
+    "name": "alex-moreno/stubby4php",
     "type": "app",
     "description": "Stub server written in Silex/PHP",
     "keywords": ["stub","stubby"],
@@ -7,7 +7,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Alex Moreno-Lopez",
+            "name": "Alex Moreno Lopez",
             "email": "alejandro.moreno@tdo.es",
             "homepage": "http://alexmoreno.net",
             "role": "Software Engineer"
