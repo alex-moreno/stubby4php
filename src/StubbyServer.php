@@ -9,6 +9,7 @@
 
 namespace Stubby4php;
 
+use Stubby4php\Controller\SocketController;
 use Stubby4php\Controller\ThreadController;
 use Stubby4php\Controller\ConfigController;
 
@@ -16,7 +17,14 @@ class StubbyServer {
 
   private $thread;
 
-  public function __construct($thread = NULL, $config = NULL) {
+  /**
+   * Default constructor.
+   *
+   * @param null $socket
+   * @param null $thread
+   * @param null $config
+   */
+  public function __construct($socket = NULL, $thread = NULL, $config = NULL) {
 
     if (!$thread) {
       $this->thread = new ThreadController();
@@ -26,13 +34,16 @@ class StubbyServer {
       $this->config = new ConfigController();
     }
 
+    if (!$socket) {
+      $this->socket = new SocketController();
+    }
   }
 
+  /**
+   * Run the server.
+   */
   public function run() {
     // Loop to run the server.
-    while(true) {
-      // execute socket.
-    }
-
+    $this->socket->run();
   }
 }
