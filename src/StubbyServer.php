@@ -9,7 +9,7 @@
 
 namespace Stubby4php;
 
-use Stubby4php\Controller\SocketController;
+use Stubby4php\Socket\SocketController;
 use Stubby4php\Controller\ThreadController;
 use Stubby4php\Controller\ConfigController;
 
@@ -35,6 +35,7 @@ class StubbyServer {
     }
 
     if (!$socket) {
+      // @TODO: inject a class to do the websocket and the handshake.
       $this->socket = new SocketController();
     }
   }

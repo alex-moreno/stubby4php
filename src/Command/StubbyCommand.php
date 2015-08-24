@@ -24,6 +24,7 @@ class StubbyCommand extends Command {
     $this
       ->setName('Stubby4php')
       ->setDescription('Greet someone');
+    // @todo:
 //      ->addArgument(
 //        '',
 //        InputArgument::REQUIRED,
