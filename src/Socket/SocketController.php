@@ -20,8 +20,14 @@ class SocketController {
    * @param string $port
    *   Port where we'll be creating the socket.
    */
-  public function __construct($address = 'tcp://127.0.0.1:8882', $port = '8882') {
-    $this->socket = stream_socket_server($address, $errno, $errorMessage);
+  public function __construct($address = 'tcp://127.0.0.1', $port = '8882') {
+      $this->socket = stream_socket_server($address . ':' . $port, $errno, $errorMessage);
+    if ($this->socket == FALSE) {
+      echo 'Address:Port is already on use' . PHP_EOL;
+    }
+    else{
+      echo 'Listening requests' . PHP_EOL;
+    }
   }
 
   /**
@@ -29,16 +35,18 @@ class SocketController {
    */
   public function run() {
 
-    while (TRUE) {
+    while ($this->socket) {
       // Keep the server always listening.
       $client = stream_socket_accept($this->socket, -1);
 
       if ($client) {
-        echo 'Accepted connection, sending response.' . PHP_EOL;
+        echo 'Incoming connection.' . PHP_EOL;
 
         $request = stream_socket_recvfrom($client, 2048);
 
         if ($request) {
+          echo 'Request: ' . PHP_EOL . $request;
+
           // Send the handshake.
           stream_socket_sendto($client, $this->dohandshake($request));
 
@@ -49,6 +57,9 @@ class SocketController {
 
         // And close the client.
         fclose($client);
+      }
+      else {
+        exit;
       }
     }
   }
@@ -84,6 +95,7 @@ class SocketController {
   public function getResource($request) {
     $resource = '';
 
+    // @todo: cache this results.
     if(preg_match("/GET (.*) HTTP/", $request, $match)) {
       $resource = $match[1];
     }
@@ -103,6 +115,7 @@ class SocketController {
   public function getHost($request) {
     $host = "";
 
+    // @todo: cache this results.
     if(preg_match("/Host: (.*)\r\n/", $request, $match)) {
       $host = $match[1];
     }
@@ -124,6 +137,7 @@ class SocketController {
     // @TODO: Accept regex.
     $origin = "";
 
+    // @todo: cache this results.
     if(preg_match("/Origin: (.*)\r\n/", $request, $match)) {
       $origin = $match[1];
     }

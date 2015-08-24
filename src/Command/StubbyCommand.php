@@ -47,7 +47,6 @@ class StubbyCommand extends Command {
    */
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    $output->writeln('Listening requests.');
     $server = new StubbyServer();
     $server->run();
   }
